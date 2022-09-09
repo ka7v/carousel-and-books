@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block body %}
+<form class="row g-6" method="POST">
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="book_title">enter name of the book</span>
+        <input type="text" class="form-control-fluid" aria-label="Sizing example input" aria-describedby="book_title" name="name" value="">
+    </div>
+    <br>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="book_genre">enter genre of the book</span>
+        <input type="text" class="form-control-fluid" aria-label="Sizing example input" aria-describedby="book_genre" name="genre" value="">
+    </div>
+    <br>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="book_author">enter author of the book</span>
+        <input type="text" class="form-control-fluid" aria-label="Sizing example input" aria-describedby="book_author" name="author" value="">
+    </div>
+    <br>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="book_language">enter language of the book</span>
+        <input type="text" class="form-control-fluid" aria-label="Sizing example input" aria-describedby="book_language" name="language" value="">
+    </div>
+    <br>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="book_page_count">enter page count of the book</span>
+        <input type="text" class="form-control-fluid" aria-label="Sizing example input" aria-describedby="book_page_count" name="page" value="">
+    </div>
+    <br>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="description_book">describe the book</span>
+        <input type="text" class="form-control-fluid" aria-label="Sizing example input" aria-describedby="description_book" name="description" value="">
+    </div>
+    <div class="col-auto">
+        <button type="submit" role="button" class="btn btn-primary mb-3">press to add</button>
+    </div>
+</form>
+
+
+{% endblock %}

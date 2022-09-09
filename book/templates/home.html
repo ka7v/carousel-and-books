@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+
+{% block body %}
+{% for book in pages.items %}
+<div class="card"  style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src=static/{{book.photo}} class="img-fluid rounded-start" alt="..."/>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">{{book.name}}</h5>
+                <p class="card-text">{{auther.query.filter_by(id=book.id).first()}}</p>
+                <p class="card-text"><small class="text-muted">{{book.description}}</small></p>
+                <p class="card-text"><small class="text-muted">{{book.date}}</small></p>
+                <p class="card-text"><small class="text-muted">{{language.query.filter_by(id=book.id).first()}}</small>
+                </p>
+                <p class="card-text"><small class="text-muted">{{genre.query.filter_by(id=book.id).first()}}</small></p>
+                <div class="form-floating">
+                </div>
+            </div>
+        </div>
+            <form class="position-absolute top-0 start-0" method="POST" action="/posts/like">
+                    <button id="like" type="submit" class="btn btn-link" name="likes" value="{{book.id}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"></path>
+                            Like
+                        </svg>
+                        <small>{{ like_count(book.id) }}</small></button>
+                </form>
+    </div>
+    <form class="input-group mb-6" method="POST" action="/posts/comment">
+                              <span class="input-group-text" id="basic-addon1">
+                <input type="text" class="form" placeholder="Input your comment" aria-label="Input group example"
+                       aria-describedby="basic-addon1" name="comm" value="">
+                               <button type="submit" class="btn btn-link" name="id" value="{{book.id}}"><svg
+                                       xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                       class="bi bi-send" viewBox="0 0 16 16">
+  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+</svg></button>
+                              </span>
+    </form>
+
+    <div class="overflow-auto p-3 mb-3 mb-md-0 me-md-3 bg-light" style="max-width: 100%; max-height: 65px; ">
+     <code> {% for i in comment.query.filter_by(book_id=book.id).all() %} {% if i %} @{{i.user.nick_name}}-{{ i.comm }} <br>{%endif%} {% endfor %}</code>
+  </div>
+</div>
+<br>
+
+{% endfor %}
+
+
+<nav>
+    <ul class="pagination">
+        <li {% if not pages.has_prev %}  class="disabled" {% endif %}><a class="page-link" href="./?page={{ pages.prev_num }}"> << Previous </a></li>
+        {% for page in pages.iter_pages() %}
+            <li {% if page == pages.page %} class="active" {% endif %}><a class="page-link" href="./?page={{ page }}"> {{page}} </a></li>
+        {% endfor %}
+        <li {% if not pages.has_next %} class="disabled" {% endif %}><a class="page-link" href="./?page={{ pages.next_num }}"> Next >> </a></li>
+    </ul>
+</nav>
+{% endblock %}

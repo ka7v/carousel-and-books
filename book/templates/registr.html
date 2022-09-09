@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>registracia</title>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block card %}
+{% endblock %}
+
+{% block body %}
+<form action="" method="POST" class="form-contact">
+    <div class="row-md-3" >
+        <div class="col-md-6" >
+            <span for="inputEmail4" class="form-label">Email</span>
+            <input type="email" placeholder="Email" class="form-control" id="inputEmail4" name="email" value="" required>
+            <br>
+            <span class="form-label">Name</span>
+            <input type="text" placeholder="Name..." class="form-control" name="name" value="" required>
+            <br>
+            <span class="form-label">first_name</span>
+            <input type="text" placeholder="first_name" class="form-control" name="firstname" value="" required>
+            <br>
+            <span class="form-label">Nick-Name</span>
+            <input type="text" placeholder="Nick-Name" class="form-control" name="nickname" value="" required>
+        </div>
+        <br>
+        <div class="col-md-6">
+            <span for="inputPassword4" class="form-label">Password</span>
+            <input type="password" class="form-control" id="inputPassword4" name="pswd" value="" required>
+            <br>
+            <span for="inputPassword4" class="form-label">Password confirmation</span>
+            <input type="password" class="form-control" name="pswd2" value="" required>
+            <br>
+            <button class="btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block card %}
+{% endblock %}
+
+{% block body %}
+<body class="text-center">
+
+<main class="form-signin w-100 m-auto">
+    <form method="POST" action="" class="form-contact">
+        <img class="mb-4" src="{{ url_for('static', filename='images/logo.jpg') }}" alt="" width="150" height="65">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <br>
+        <div class="col-auto mb-4">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@mail.com" name="email" value="" required>
+            <span for="floatingInput">Email address</span>
+<!--            <span for="inputEmail4" class="form-label">Email</span>-->
+<!--            <input type="email" placeholder="Email" class="form-control" id="inputEmail4" name="email" value="" required>-->
+        </div>
+        <div class="col-auto mb-4">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="psw" value="" required>
+            <span for="floatingPassword">Password</span>
+        </div>
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="remainme"> Remember me
+            </label>
+        </div>
+        <button class="btn-primary" type="submit" value="sign_in">Sign in</button>
+        <a href="{{ url_for('loge_in') }}" class="text-decoration-none">don't have an account?</a>
+        <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
+    </form>
+</main>
+
+
+</body>
+{% endblock %}
